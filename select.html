@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조회</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+
+<body>
+    <h1>Hyunbae HAN's Serverless Select</h1>
+    <input type="button" onclick='onLoggin()' value="조회">
+</body>
+<script>
+    function onLoggin() {
+
+        axios({
+            method: "GET",
+            url: 'https://api.serverless.bbyamddagoo.shop/todos'
+        }).then((res) => {
+            console.log(res);
+            document.write("<h1>Hyunbae HAN's Serverless 조회 결과</h1>");
+            
+            for (i = 0; i < res.data.length; i++) {
+                var myDate = new Date(res.data[i].updatedAt);
+                var date = myDate.getFullYear() + "-" + (myDate.getMonth()+1) + "-" + myDate.getDate() + " " + myDate.getHours() + "시 " + myDate.getMinutes() + "분";
+                document.write("------------------------------------------------------------------------------------------------------------------------------------");
+                document.write("<br  />");
+                document.write("ID : ");
+                document.write(res.data[i].id);
+                document.write(" ,   ");
+                document.write("Contents : ");
+                document.write(res.data[i].body);
+                document.write(" ,   ");
+                document.write("Update Date : ");
+                document.write(date);
+                document.write("<br  />");
+            };
+
+            document.write("------------------------------------------------------------------------------------------------------------------------------------");
+
+
+        }).catch(error => {
+            console.log(error);
+            throw new Error(error);
+        });
+        
+    }
+</script>
+
+</html>

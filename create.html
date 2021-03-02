@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>생성</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+
+<body>
+    <h1>Hyunbae HAN's Serverless Create</h1>
+    <div>
+        <input type="body" placeholder="내용을 입력해주세요." id="body" value="">
+    </div>
+    <input type="button" onclick='onLoggin()' value="생성">
+</body>
+<script>
+    function onLoggin() {
+
+        const body = document.getElementById("body");
+        axios({
+            method: "POST",
+            // method:"GET",
+            url: 'https://api.serverless.bbyamddagoo.shop/todos',
+            data: {
+                "body": body.value
+            }
+        }).then((res) => {
+            console.log(res);
+            alert( '생성 완료되었습니다.' );
+        }).catch(error => {
+            console.log(error);
+            throw new Error(error);
+        });
+    }
+</script>
+
+</html>

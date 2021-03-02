@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>삭제</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+
+<body>
+    <h1>Hyunbae HAN's Serverless Delete</h1>
+    <div>
+        <input type="id_db" placeholder="삭제할 ID 를 입력해주세요." id="id_db" value="">
+    </div>
+    <input type="button" onclick='onLoggin()' value="삭제">
+</body>
+<script>
+    function onLoggin() {
+
+        // const id_db = document.getElementById("id_db");
+        const id_db = document.getElementById("id_db").value;
+        axios({
+            method: "delete",
+            url: 'https://api.serverless.bbyamddagoo.shop/todos/' + id_db
+        }).then((res) => {
+            console.log(res);
+            alert( '삭제 완료되었습니다.' );
+        }).catch(error => {
+            console.log(error);
+            throw new Error(error);
+        });
+    }
+</script>
+
+</html>

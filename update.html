@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수정</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+
+<body>
+    <h1>Hyunbae HAN's Serverless Update</h1>
+    <div>
+        <input type="id_db" placeholder="삭제할 ID 를 입력해주세요." id="id_db" value=""><br>
+        <input type="body" placeholder="내용을 입력해주세요." id="body" value="">
+    </div>
+    <input type="button" onclick='onLoggin()' value="수정">
+</body>
+<script>
+    function onLoggin() {
+
+        const body = document.getElementById("body");
+        const id_db = document.getElementById("id_db").value;
+        axios({
+            method: "put",
+            url: 'https://api.serverless.bbyamddagoo.shop/todos/' + id_db,
+            data: {
+                "body": body.value
+            }
+        }).then((res) => {
+            console.log(res);
+            alert( '수정 완료되었습니다.' );
+        }).catch(error => {
+            console.log(error);
+            throw new Error(error);
+        });
+    }
+</script>
+
+</html>
